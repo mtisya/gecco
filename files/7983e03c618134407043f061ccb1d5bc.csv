@@ -1,0 +1,10 @@
+﻿Name,Code,Barcode Symbology,Brand,Category Code,Unit Code,Sale Unit Code,Purchase Unit Code,Cost,Price,Alert Quantity,Tax Rate,Tax Method,Image,Sub category Code,Product Variants,Product Custom Field 1,Product Custom Field 2,Product Custom Field 3,Product Custom Field 4,Product Custom Field 5,Product Custom Field 6,HSN Code,Secondary Name,Details,Product Details,Supplier Name,Supplier Part No.,Supplier Price,supplier2 name,supplier2 part no,supplier2 price,supplier3 name,supplier3 part no,supplier3 price,supplier4 name,supplier4 part no,supplier4 price,supplier5 name,supplier5 part no,supplier5 price,Quantity
+Grapefruit,FFR01,code39,,FFR,pc,,,3.89,5.6,100,GST @0%,Inclusive,99508a37a9e17ee808b79a51a4ebea27.png,,,,,,,,,,,,"<p>The grapefruit is a subtropical citrus tree known for its sour to semi-sweet fruit. Grapefruit is a hybrid originating in Barbados as an accidental cross between two introduced species, sweet orange and pomelo or shaddock, both of which were introduced from Asia in the seventeenth century. When found, it was named the \""forbidden fruit\"" and it has also been misidentified with the pomelo.</p>",,,,,,,,,,,,,,,,20
+Kiwi,FFR02,code39,,FFR,pc,,,2.75,3.9,100,GST @0%,Inclusive,15b75a2391585e635cfaafb829ec8b15.png,,,,,,,,,,,,"<p>The kiwifruit or Chinese gooseberry is the edible berry of a woody
+ vine in the genus Actinidia. The most common cultivar group of 
+kiwifruit is oval, about the size of a large hen\'s egg</p>",Mohd Khairul,,2.9,Ms. Natalie,,3,,,,,,,,,,18.75
+Lemon,FFR03,code39,,FFR,pc,,,1.95,3,100,GST @0%,Inclusive,3d0ca41cb6e4386232b64197e9578d09.png,,,,,,,,,,,,"<p>The lemon is a species of small evergreen tree native to Asia.
+The tree's ellipsoidal yellow fruit is used for culinary and 
+non-culinary purposes throughout the world, primarily for its juice, 
+which has both culinary and cleaning uses.</p>",Mohd Khairul,,,Ms. Natalie,,,,,,,,,,,,20
+Lime,FFR04,code39,,FFR,pc,,,1.95,3,100,GST @0%,Inclusive,af65aa735a07381c3be759337c4e99c3.png,,,,,,,,,,,,"<p>A lime is a citrus fruit, which is typically round, lime green, 3–6 centimetres in diameter, and containing sour juice vesicles.</p>",,,,,,,,,,,,,,,,20

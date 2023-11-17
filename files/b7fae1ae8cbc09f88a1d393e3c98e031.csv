@@ -1,0 +1,34 @@
+﻿Product Code,Product Name,Variant,Expected,Counted
+111111,Watermelon WS,,48.66,48.66
+222222,Yellow Watermelon WS,,30,30
+E001,Eggs,,12,12
+FFR01,Grapefruit,,10,10
+FFR02,Kiwi,,8.75,7.75
+FFR03,Lemon,,10,9
+FFR04,Lime,,10,9
+FFR05,Strawberry,,10,9
+FFR06,Watermelon,,50,50
+FFR07,Yellow Watermelon,,30,30
+IT01,Canon 1100d,,4,4
+IT02,Computer Set 1,,6,6
+IT03,Computer Set 2,,5,5
+IT04,Hard Disk,500GB,15,15
+IT04,Hard Disk,1TB,15,15
+IT05,Keyboard,Black,5,5
+IT05,Keyboard,White,5,5
+IT06,Mouse,Black,7,7
+IT06,Mouse,Blue,9,9
+IT06,Mouse,Red,9,9
+IT07,Laptop,,8,8
+IT08,RAM,2GB,15,15
+IT08,RAM,4GB,15,15
+TOY01,Minion Bananas,,8,8
+TOY02,Minion Big,,9,9
+TOY03,Minion Crazy,,10,10
+TOY04,Minion Hello,,10,10
+TOY05,Minion Reading,,0,0
+TOY06,Minion Shy,,10,10
+TOY07,Minion Amazed,,10,10
+TP001,Test Product 1,,70,70
+TPD01,Test Product with Deposit ,,10,10
+TPD02,Test Product 2 with Deposit ,,10,10
