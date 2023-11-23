@@ -229,7 +229,7 @@ $(document).ready(function () {
         }
     });
 
-    // Order tax calcuation
+    // Order tax calculation
     if (site.settings.tax2 != 0) {
         $('#potax2').change(function () {
             localStorage.setItem('potax2', $(this).val());

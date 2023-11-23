@@ -894,12 +894,12 @@
                                         </a>
                                     </li>
                                     <li id="reports_commision_report">
-                                        <a href="<?= admin_url('reports/commisions') ?>">
+                                        <a href="<?= admin_url('reports/users') ?>">
                                             <i class="fa fa-users"></i><span class="text"> <?= lang('commision_report'); ?></span>
                                         </a>
                                     </li>
                                     <li id="reports_staff_report">
-                                        <a href="<?= admin_url('reports/users') ?>">
+                                        <a href="<?= admin_url('reports/userss') ?>">
                                             <i class="fa fa-users"></i><span class="text"> <?= lang('staff_report'); ?></span>
                                         </a>
                                     </li>

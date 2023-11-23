@@ -390,6 +390,7 @@ class Auth extends MY_Controller
         echo $this->datatables->generate();
     }
 
+    
     public function getUsers()
     {
         if (!$this->Owner) {
@@ -400,6 +401,28 @@ class Auth extends MY_Controller
         $this->load->library('datatables');
         $this->datatables
             ->select($this->db->dbprefix('users') . '.id as id, first_name, last_name, email, company, award_points, ' . $this->db->dbprefix('groups') . '.name, active')
+            ->from('users')
+            ->join('groups', 'users.group_id=groups.id', 'left')
+            ->group_by('users.id')
+            ->where('company_id', null)
+            ->edit_column('active', '$1__$2', 'active, id')
+            ->add_column('Actions', "<div class=\"text-center\"><a href='" . admin_url('auth/profile/$1') . "' class='tip' title='" . lang('edit_user') . "'><i class=\"fa fa-edit\"></i></a></div>", 'id');
+
+        if (!$this->Owner) {
+            $this->datatables->unset_column('id');
+        }
+        echo $this->datatables->generate();
+    }
+    public function getUserss()
+    {
+        if (!$this->Owner) {
+            $this->session->set_flashdata('warning', lang('access_denied'));
+            $this->sma->md();
+        }
+
+        $this->load->library('datatables');
+        $this->datatables
+            ->select($this->db->dbprefix('users') . '.id as id, reference_no, last_name, email, company, award_points, ' . $this->db->dbprefix('groups') . '.name, active')
             ->from('users')
             ->join('groups', 'users.group_id=groups.id', 'left')
             ->group_by('users.id')

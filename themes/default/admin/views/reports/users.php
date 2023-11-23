@@ -6,7 +6,7 @@
             "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "<?= lang('all') ?>"]],
             "iDisplayLength": <?= $Settings->rows_per_page ?>,
             'bProcessing': true, 'bServerSide': true,
-            'sAjaxSource': '<?= admin_url('reports/getUsers') ?>',
+            'sAjaxSource': '<?= admin_url('reports/getUserss') ?>',
             'fnServerData': function (sSource, aoData, fnCallback) {
                 aoData.push({
                     "name": "<?= $this->security->get_csrf_token_name() ?>",
@@ -14,27 +14,31 @@
                 });
                 $.ajax({'dataType': 'json', 'type': 'POST', 'url': sSource, 'data': aoData, 'success': fnCallback});
             },
-            "aoColumns": [null, null, null, null, null, {"mRender": user_status}, {"bSortable": false}]
+            "aoColumns": [null, null, null, null, null, null, null, null]
         }).fnSetFilteringDelay().dtFilter([
-            {column_number: 0, filter_default_label: "[<?=lang('first_name');?>]", filter_type: "text", data: []},
-            {column_number: 1, filter_default_label: "[<?=lang('last_name');?>]", filter_type: "text", data: []},
-            {column_number: 2, filter_default_label: "[<?=lang('email');?>]", filter_type: "text", data: []},
-            {column_number: 3, filter_default_label: "[<?=lang('company');?>]", filter_type: "text", data: []},
-            {column_number: 4, filter_default_label: "[<?=lang('group');?>]", filter_type: "text", data: []},
-            {
-                column_number: 5, select_type: 'select2',
-                select_type_options: {
-                    placeholder: '<?=lang('status');?>',
-                    width: '100%',
-                    minimumResultsForSearch: -1,
-                    allowClear: true
-                },
-                data: [{value: '1', label: '<?=lang('active');?>'}, {value: '0', label: '<?=lang('inactive');?>'}]
-            }
+            {column_number: 0, filter_default_label: "[<?=lang('invoice_no');?>]", filter_type: "text", data: []},
+            {column_number: 1, filter_default_label: "[<?=lang('customer_id');?>]", filter_type: "text", data: []},
+            {column_number: 2, filter_default_label: "[<?=lang('customer');?>]", filter_type: "text", data: []},
+            {column_number: 3, filter_default_label: "[<?=lang('biller');?>]", filter_type: "text", data: []},
+            {column_number: 4, filter_default_label: "[<?=lang('total_above_1000');?>]", filter_type: "text", data: []},
+            {column_number: 5, filter_default_label: "[<?=lang('comm_above_1000');?>]", filter_type: "text", data: []},
+            {column_number: 6, filter_default_label: "[<?=lang('total_below_1000');?>]", filter_type: "text", data: []},
+            {column_number: 7, filter_default_label: "[<?=lang('comm_below_1000');?>]", filter_type: "text", data: []},
+            // {
+            //     column_number: 5, select_type: 'select2',
+            //     select_type_options: {
+            //         placeholder: '<?=lang('status');?>',
+            //         width: '100%',
+            //         minimumResultsForSearch: -1,
+            //         allowClear: true
+            //     },
+            //     data: [{value: '1', label: '<?=lang('active');?>'}, {value: '0', label: '<?=lang('inactive');?>'}]
+            // }
         ], "footer");
     });
 </script>
-<style>.table td:nth-child(6) {
+<style>.table td:nth-child(8
+) {
         text-align: center;
     }</style>
 <?php if ($Owner) {
@@ -54,13 +58,16 @@
                            class="table table-bordered table-hover table-striped reports-table">
                         <thead>
                         <tr>
-                            <th><?php echo lang('first_name'); ?></th>
-                            <th><?php echo lang('last_name'); ?></th>
-                            <th><?php echo lang('email'); ?></th>
-                            <th><?php echo lang('company'); ?></th>
-                            <th><?php echo lang('group'); ?></th>
-                            <th style="width:100px;"><?php echo lang('status'); ?></th>
-                            <th style="width:80px;"><?php echo lang('actions'); ?></th>
+                            <th><?php echo lang('invoice_no'); ?></th>
+                            <th><?php echo lang('customer_id'); ?></th>
+                            <th><?php echo lang('customer'); ?></th>
+                            <th><?php echo lang('biller'); ?></th>
+                            <th><?php echo lang('total_above_1000'); ?></th>
+                            <th><?php echo lang('comm_above_1000'); ?></th>
+                            <th><?php echo lang('total_below_1000'); ?></th>
+                            <th><?php echo lang('comm_below_1000'); ?></th>
+                            <!-- <th style="width:100px;"><?php echo lang('status'); ?></th>
+                            <th style="width:80px;"><?php echo lang('actions'); ?></th> -->
                         </tr>
                         </thead>
                         <tbody>
@@ -75,8 +82,11 @@
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th style="width:100px;"></th>
-                            <th style="width:85px; text-align:center;"><?= lang('actions'); ?></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <!-- <th style="width:100px;"></th>
+                            <th style="width:85px; text-align:center;"><?= lang('actions'); ?></th> -->
                         </tr>
                         </tfoot>
                     </table>

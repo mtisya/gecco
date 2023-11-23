@@ -2638,6 +2638,24 @@ class Reports extends MY_Controller
             ->unset_column('id');
         echo $this->datatables->generate();
     }
+    public function getUserss()
+    {
+        $this->load->library('datatables');
+        $this->datatables
+        ->select($this->db->dbprefix('sales') .'.id as id, reference_no as salesman, customer_id as customer, LEFT(customer, 28) as name, biller, SUM(total) as reference_no, SUM(CASE WHEN total >= 1000 THEN total ELSE 0 END) as total_above_1000, CASE WHEN total >= 1000 THEN ROUND(total * 0.09, 2) ELSE 0.00 END as comm_above_1000, SUM(CASE WHEN total < 1000 THEN total ELSE 0 END) as total_below_1000, CASE WHEN total < 1000 THEN ROUND(total * 0.045, 2) ELSE 0.00 END as comm_below_1000')
+        ->from('sales')    
+        ->where('sale_status', "completed")
+        ->group_by('reference_no');
+
+        if (!$this->Owner) {
+            $this->datatables->where('group_id !=', 1);
+        }
+        $this->datatables
+            ->edit_column('active', '$1__$2', 'active, id')
+            ->add_column('Actions', "<div class='text-center'><a class=\"tip\" title='" . lang('view_report') . "' href='" . admin_url('reports/staff_report/$1') . "'><span class='label label-primary'>" . lang('view_report') . '</span></a></div>', 'id')
+            ->unset_column('id');
+        echo $this->datatables->generate();
+    }
 
     public function getCommisions()
     {

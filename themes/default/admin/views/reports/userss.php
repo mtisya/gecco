@@ -1,12 +1,12 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <script>
     $(document).ready(function () {
-        oTable = $('#comtable').dataTable({
+        oTable = $('#staffTable').dataTable({
             "aaSorting": [[2, "asc"], [3, "asc"]],
             "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "<?= lang('all') ?>"]],
             "iDisplayLength": <?= $Settings->rows_per_page ?>,
             'bProcessing': true, 'bServerSide': true,
-            'sAjaxSource': '<?= admin_url('reports/getCommisions') ?>',
+            'sAjaxSource': '<?= admin_url('reports/getUsers') ?>',
             'fnServerData': function (sSource, aoData, fnCallback) {
                 aoData.push({
                     "name": "<?= $this->security->get_csrf_token_name() ?>",
@@ -50,7 +50,7 @@
                 <p class="introtext"><?= lang('view_report_staff'); ?></p>
 
                 <div class="table-responsive">
-                    <table id="comtable" cellpadding="0" cellspacing="0" border="0"
+                    <table id="staffTable" cellpadding="0" cellspacing="0" border="0"
                            class="table table-bordered table-hover table-striped reports-table">
                         <thead>
                         <tr>
