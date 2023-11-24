@@ -63,24 +63,24 @@
                     '<br>' . lang('tel') . ': ' . $biller->phone;
 
                     // comment or remove these extra info if you don't need
-                    if (!empty($biller->cf1) && $biller->cf1 != '-') {
-                        echo '<br>' . lang('bcf1') . ': ' . $biller->cf1;
-                    }
-                    if (!empty($biller->cf2) && $biller->cf2 != '-') {
-                        echo '<br>' . lang('bcf2') . ': ' . $biller->cf2;
-                    }
-                    if (!empty($biller->cf3) && $biller->cf3 != '-') {
-                        echo '<br>' . lang('bcf3') . ': ' . $biller->cf3;
-                    }
-                    if (!empty($biller->cf4) && $biller->cf4 != '-') {
-                        echo '<br>' . lang('bcf4') . ': ' . $biller->cf4;
-                    }
-                    if (!empty($biller->cf5) && $biller->cf5 != '-') {
-                        echo '<br>' . lang('bcf5') . ': ' . $biller->cf5;
-                    }
-                    if (!empty($biller->cf6) && $biller->cf6 != '-') {
-                        echo '<br>' . lang('bcf6') . ': ' . $biller->cf6;
-                    }
+                    // if (!empty($biller->cf1) && $biller->cf1 != '-') {
+                    //     echo '<br>' . lang('bcf1') . ': ' . $biller->cf1;
+                    // }
+                    // if (!empty($biller->cf2) && $biller->cf2 != '-') {
+                    //     echo '<br>' . lang('bcf2') . ': ' . $biller->cf2;
+                    // }
+                    // if (!empty($biller->cf3) && $biller->cf3 != '-') {
+                    //     echo '<br>' . lang('bcf3') . ': ' . $biller->cf3;
+                    // }
+                    // if (!empty($biller->cf4) && $biller->cf4 != '-') {
+                    //     echo '<br>' . lang('bcf4') . ': ' . $biller->cf4;
+                    // }
+                    // if (!empty($biller->cf5) && $biller->cf5 != '-') {
+                    //     echo '<br>' . lang('bcf5') . ': ' . $biller->cf5;
+                    // }
+                    // if (!empty($biller->cf6) && $biller->cf6 != '-') {
+                    //     echo '<br>' . lang('bcf6') . ': ' . $biller->cf6;
+                    // }
                     // end of the customer fields
 
                     echo '<br>';
@@ -94,27 +94,27 @@
                     ?>
                 </div>
                 <?php
-                if ($Settings->invoice_view == 1 || $Settings->indian_gst) {
-                    ?>
-                    <div class="col-sm-12 text-center">
+                // if ($Settings->invoice_view == 1 || $Settings->indian_gst) {
+                //     ?>
+                     <div class="col-sm-12 text-center">
                         <h4 style="font-weight:bold;"><?=lang('tax_invoice'); ?></h4>
-                    </div>
+                     </div>
                     <?php
-                }
-                echo '<p>' . lang('sale_number') . ': ' . $inv->id . '<br>';
-                echo lang('date') . ': ' . $this->sma->hrld($inv->date) . '<br>';
-                echo lang('sale_ref') . ': ' . $inv->reference_no . '<br>';
-                if (!empty($inv->return_sale_ref)) {
-                    echo '<p>' . lang('return_ref') . ': ' . $inv->return_sale_ref;
-                    if ($inv->return_id) {
-                        echo ' <a data-target="#myModal2" data-toggle="modal" href="' . admin_url('sales/modal_view/' . $inv->return_id) . '"><i class="fa fa-external-link no-print"></i></a><br>';
-                    } else {
-                        echo '</p>';
-                    }
-                }
-                echo lang('sales_person') . ': ' . $created_by->first_name . ' ' . $created_by->last_name . '</p>';
-                echo '<p>';
-                echo lang('customer') . ': ' . ($customer->company && $customer->company != '-' ? $customer->company : $customer->name) . '<br>';
+                // }
+                // echo '<p>' . lang('sale_number') . ': ' . $inv->id . '<br>';
+                // echo lang('date') . ': ' . $this->sma->hrld($inv->date) . '<br>';
+                // echo lang('sale_ref') . ': ' . $inv->reference_no . '<br>';
+                // if (!empty($inv->return_sale_ref)) {
+                //     echo '<p>' . lang('return_ref') . ': ' . $inv->return_sale_ref;
+                //     if ($inv->return_id) {
+                //         echo ' <a data-target="#myModal2" data-toggle="modal" href="' . admin_url('sales/modal_view/' . $inv->return_id) . '"><i class="fa fa-external-link no-print"></i></a><br>';
+                //     } else {
+                //         echo '</p>';
+                //     }
+                // }
+                // echo lang('sales_person') . ': ' . $created_by->first_name . ' ' . $created_by->last_name . '</p>';
+                // echo '<p>';
+                // echo lang('customer') . ': ' . ($customer->company && $customer->company != '-' ? $customer->company : $customer->name) . '<br>';
                 if ($pos_settings->customer_details) {
                     if ($customer->vat_no != '-' && $customer->vat_no != '') {
                         echo '<br>' . lang('vat_no') . ': ' . $customer->vat_no;
@@ -180,11 +180,11 @@
                                 echo '<tr><td colspan="2" class="no-border">#' . $r . ': &nbsp;&nbsp;' . product_name($row->product_name, ($printer ? $printer->char_per_line : null)) . ($row->variant ? ' (' . $row->variant . ')' : '') . ($row->serial_no ? '<br>' . $row->serial_no : '') . '<span class="pull-right">' . ($row->tax_code ? '*' . $row->tax_code : '') . '</span></td></tr>';
                                 echo '<tr><td class="no-border border-bottom">' . $this->sma->formatQuantity($row->unit_quantity) . ($row->product_unit_code ? $row->product_unit_code : '') . ' x ' . $this->sma->formatMoney($row->unit_price) . ($row->item_tax != 0 ? ' - ' . lang('tax') . ' <small>(' . ($Settings->indian_gst ? $row->tax : $row->tax_code) . ')</small> ' . $this->sma->formatMoney($row->item_tax) . ($row->hsn_code ? ' (' . lang($row->product_type == 'service' ? 'sac_code' : 'hsn_code') . ': ' . $row->hsn_code . ')' : '') : '') . '</td><td class="no-border border-bottom text-right">' . $this->sma->formatMoney($row->subtotal) . '</td></tr>';
 
-                                // echo '<tr><td class="no-border border-bottom">' . $this->sma->formatQuantity($row->quantity) . ' x ';
-                                // if ($row->item_discount != 0) {
-                                //     echo '<del>' . $this->sma->formatMoney($row->net_unit_price + ($row->item_discount / $row->quantity) + ($row->item_tax / $row->quantity)) . '</del> ';
-                                // }
-                                // echo $this->sma->formatMoney($row->net_unit_price + ($row->item_tax / $row->quantity)) . '</td><td class="no-border border-bottom text-right">' . $this->sma->formatMoney($row->subtotal) . '</td></tr>';
+                                echo '<tr><td class="no-border border-bottom">' . $this->sma->formatQuantity($row->quantity) . ' x ';
+                                if ($row->item_discount != 0) {
+                                    echo '<del>' . $this->sma->formatMoney($row->net_unit_price + ($row->item_discount / $row->quantity) + ($row->item_tax / $row->quantity)) . '</del> ';
+                                }
+                                echo $this->sma->formatMoney($row->net_unit_price + ($row->item_tax / $row->quantity)) . '</td><td class="no-border border-bottom text-right">' . $this->sma->formatMoney($row->subtotal) . '</td></tr>';
                                 $r++;
                             }
                         }
