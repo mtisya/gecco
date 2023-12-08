@@ -2217,7 +2217,11 @@ if (pos_settings.mpesa_payment != '') {
     shortcut.add(
         pos_settings.mpesa_payment,
         function () {
-            $('#mpesa_payment').click();
+            if ($('#payments').is(':visible')) {
+                $('#submit-sale').click();
+            } else {
+                $('#payment').trigger('click');
+            }
         },
         { type: 'keydown', propagate: false, target: document }
     );

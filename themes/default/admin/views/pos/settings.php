@@ -313,7 +313,7 @@
                             <?= form_input('finalize_sale', $pos->finalize_sale, 'class="form-control tip" id="finalize_sale"'); ?>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4">
+                    <!-- <div class="col-md-4 col-sm-4">
                         <div class="form-group">
                             <?= lang('today_sale', 'today_sale'); ?>
                             <?= form_input('today_sale', $pos->today_sale, 'class="form-control tip" id="today_sale"'); ?>
@@ -330,7 +330,7 @@
                             <?= lang('close_register', 'close_register'); ?>
                             <?= form_input('close_register', $pos->close_register, 'class="form-control tip" id="close_register"'); ?>
                         </div>
-                    </div>
+                    </div> -->
                 </fieldset>
 
                 <fieldset class="scheduler-border">

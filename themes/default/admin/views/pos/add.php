@@ -1048,14 +1048,14 @@
                         <td><?=$pos_settings->add_customer?></td>
                         <td><?=lang('add_customer')?></td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td><?=$pos_settings->toggle_category_slider?></td>
                         <td><?=lang('toggle_category_slider')?></td>
                     </tr>
                     <tr>
                         <td><?=$pos_settings->toggle_subcategory_slider?></td>
                         <td><?=lang('toggle_subcategory_slider')?></td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td><?=$pos_settings->mpesa_payment?></td>
                         <td><?=lang('mpesa_payment')?></td>
@@ -1068,15 +1068,15 @@
                         <td><?=$pos_settings->suspend_sale?></td>
                         <td><?=lang('suspend_sale')?></td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td><?=$pos_settings->print_items_list?></td>
                         <td><?=lang('print_items_list')?></td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td><?=$pos_settings->finalize_sale?></td>
                         <td><?=lang('finalize_sale')?></td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td><?=$pos_settings->today_sale?></td>
                         <td><?=lang('today_sale')?></td>
                     </tr>
@@ -1087,7 +1087,7 @@
                     <tr>
                         <td><?=$pos_settings->close_register?></td>
                         <td><?=lang('close_register')?></td>
-                    </tr>
+                    </tr> -->
                     </tbody>
                 </table>
             </div>
