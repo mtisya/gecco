@@ -1043,6 +1043,7 @@
                         <td><?=$pos_settings->customer_selection?></td>
                         <td><?=lang('customer_selection')?></td>
                     </tr>
+                   
                     <tr>
                         <td><?=$pos_settings->add_customer?></td>
                         <td><?=lang('add_customer')?></td>
@@ -1054,6 +1055,10 @@
                     <tr>
                         <td><?=$pos_settings->toggle_subcategory_slider?></td>
                         <td><?=lang('toggle_subcategory_slider')?></td>
+                    </tr>
+                    <tr>
+                        <td><?=$pos_settings->mpesa_payment?></td>
+                        <td><?=lang('mpesa_payment')?></td>
                     </tr>
                     <tr>
                         <td><?=$pos_settings->cancel_sale?></td>

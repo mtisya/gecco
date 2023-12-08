@@ -105,6 +105,7 @@ $lang['shortcut_keys']                      = 'Shortcut Keys';
 $lang['keyboard']                           = 'Keyboard';
 $lang['onscreen_keyboard']                  = 'On-Screen Keyboard';
 $lang['focus_add_item']                     = 'Focus Add Item Input';
+$lang['mpesa']                              = 'Mpesa payment';
 $lang['add_manual_product']                 = 'Add Manual Item to Sale';
 $lang['customer_selection']                 = 'Customer Input';
 $lang['toggle_category_slider']             = 'Toggle Categories Slider';

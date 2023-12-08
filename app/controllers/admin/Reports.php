@@ -2642,7 +2642,7 @@ class Reports extends MY_Controller
     {
         $this->load->library('datatables');
         $this->datatables
-        ->select($this->db->dbprefix('sales') .'.id as id, reference_no as salesman, customer_id as customer, LEFT(customer, 28) as name, biller, SUM(total) as reference_no, SUM(CASE WHEN total >= 1000 THEN total ELSE 0 END) as total_above_1000, CASE WHEN total >= 1000 THEN ROUND(total * 0.09, 2) ELSE 0.00 END as comm_above_1000, SUM(CASE WHEN total < 1000 THEN total ELSE 0 END) as total_below_1000, CASE WHEN total < 1000 THEN ROUND(total * 0.045, 2) ELSE 0.00 END as comm_below_1000')
+        ->select($this->db->dbprefix('sales') .'.id as id, reference_no as salesman, customer_id as customer, LEFT(customer, 28) as name, biller, SUM(total) as reference_no, CASE WHEN total >= 1000 THEN ROUND(total * 0.2, 2) ELSE 0.00 END as comm_above_1000, SUM(CASE WHEN total < 1000 THEN total ELSE 0 END) as total_below_1000, CASE WHEN total < 1000 THEN ROUND(total * 0.25, 2) ELSE 0.00 END as comm_below_1000')
         ->from('sales')    
         ->where('sale_status', "completed")
         ->group_by('reference_no');

@@ -22,9 +22,9 @@ class Mpesa extends MY_Controller
     }
     public function index()
     {
-        // $post = json_decode($this->input->raw_input_stream);
-        // // $post2= json_encode($post);
-        // log_message('debug', "post worked");
+        // $post = json_decode($this->input->post("mpesa"));
+        // $post2= json_encode($post);
+        // log_message('debug', $post);
         // // $post = json_decode($post2);
         // // $this->db->insert('mpesatrans', $post);
         // $post->status = "pending";
@@ -33,16 +33,20 @@ class Mpesa extends MY_Controller
 
     }
 
-    private function __mcus2b()
+    public function mcus2b()
     {
         $post = json_decode($this->security->xss_clean($this->input->raw_input_stream));
-        // $post2= json_encode($post);
+        $post2= json_encode($post);
+        echo($post2);
         // $post = json_decode($post2);
         // $this->db->insert('mpesatrans', $post);
         log_message('debug', $post->TransID);
         $post->status = "pending";
         $this->db->insert('mpesatrans', $post);
         $this->sma->send_json(["ResultCode" => "0", "ResultDesc"=> "Accepted"]);
+       
+        
+        
 
     }
     private function __mcus2b1()

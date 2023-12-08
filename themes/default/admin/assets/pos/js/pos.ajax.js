@@ -2213,6 +2213,15 @@ if (pos_settings.toggle_subcategory_slider != '') {
         { type: 'keydown', propagate: false, target: document }
     );
 }
+if (pos_settings.mpesa_payment != '') {
+    shortcut.add(
+        pos_settings.mpesa_payment,
+        function () {
+            $('#mpesa_payment').click();
+        },
+        { type: 'keydown', propagate: false, target: document }
+    );
+}
 if (pos_settings.cancel_sale != '') {
     shortcut.add(
         pos_settings.cancel_sale,

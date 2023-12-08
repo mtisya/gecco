@@ -285,6 +285,12 @@
                     </div>
                     <div class="col-md-4 col-sm-4">
                         <div class="form-group">
+                            <?= lang('mpesa_payment', 'mpesa_payment'); ?>
+                            <?= form_input('mpesa_payment', $pos->mpesa_payment, 'class="form-control tip" id="mpesa_payment"'); ?>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="form-group">
                             <?= lang('cancel_sale', 'cancel_sale'); ?>
                             <?= form_input('cancel_sale', $pos->cancel_sale, 'class="form-control tip" id="cancel_sale"'); ?>
                         </div>

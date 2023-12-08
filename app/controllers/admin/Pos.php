@@ -1484,6 +1484,7 @@ class Pos extends MY_Controller
                 'toggle_category_slider'    => $this->input->post('toggle_category_slider'),
                 'toggle_subcategory_slider' => $this->input->post('toggle_subcategory_slider'),
                 'toggle_brands_slider'      => $this->input->post('toggle_brands_slider'),
+                'mpesa_payment'             => $this->input->post('mpesa_payment'),
                 'cancel_sale'               => $this->input->post('cancel_sale'),
                 'suspend_sale'              => $this->input->post('suspend_sale'),
                 'print_items_list'          => $this->input->post('print_items_list'),

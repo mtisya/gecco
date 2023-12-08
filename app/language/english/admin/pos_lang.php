@@ -109,6 +109,7 @@ $lang['add_manual_product']                 = 'Add Manual Item to Sale';
 $lang['customer_selection']                 = 'Customer Input';
 $lang['toggle_category_slider']             = 'Toggle Categories Slider';
 $lang['toggle_subcategory_slider']          = 'Toggle Subcategories Slider';
+$lang['mpesa_payment']                      = 'Mpesa payment';
 $lang['cancel_sale']                        = 'Cancel Sale';
 $lang['suspend_sale']                       = 'Suspend Sale';
 $lang['print_items_list']                   = 'Print items list';

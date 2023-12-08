@@ -5,8 +5,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller']   = 'main';
 $route['404_override']         = 'notify/error_404';
 $route['translate_uri_dashes'] = true;
-$route['admin/mcus2b']  = 'admin/mpesa/mcus2b';
-$route['admin/mcus2b1']  = 'admin/mpesa/mcus2b1';
+$route['admin/pos/mcus2b']  = 'mpesa/mcus2b';
+$route['admin/pos/mcus2b1']  = 'mpesa/mcus2b1';
 
 // Shop routes
 $route['shop']                   = 'main';
