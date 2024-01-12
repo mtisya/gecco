@@ -734,6 +734,48 @@ class system_settings extends MY_Controller
         $meta = ['page_title' => lang('currencies'), 'bc' => $bc];
         $this->page_construct('settings/currencies', $meta, $this->data);
     }
+    public function sms()
+    {
+        $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
+
+        $bc   = [['link' => base_url(), 'page' => lang('home')], ['link' => admin_url('system_settings'), 'page' => lang('system_settings')], ['link' => '#', 'page' => lang('messages')]];
+        $meta = ['page_title' => lang('Messages'), 'bc' => $bc];
+        $this->page_construct('settings/message_form', $meta, $this->data);
+
+        if ($this->form_validation->run() == FALSE) 
+		{
+			//$this->page_construct('settings/message_form', $meta, $this->data);
+		} 
+		else 
+		{
+			$to = $this->input->post('sendTo');
+			$message = $this->input->post('message');
+
+			if($to) {
+
+				if($this->msg91->send($to, $message) == TRUE)  {
+					$this->session->set_flashdata('update_status', '
+						<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<strong><i class="dripicons-checkmark"></i> Hooray!</strong> Message Sent.
+					</div>');
+					redirect('Welcome','refresh');
+				}
+				 else 
+				 {
+					$this->session->set_flashdata('update_status', '
+						<div class="alert alert-danger">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<strong><i class="dripicons-checkmark"></i> Oops!</strong> Message  not sent.
+					</div>');
+					redirect('Welcome','refresh');
+
+				}
+			}
+
+			
+		}
+    }
 
     public function currency_actions()
     {
@@ -2400,6 +2442,8 @@ class system_settings extends MY_Controller
                 'returns-email'              => $this->input->post('returns-email'),
                 'returns-pdf'                => $this->input->post('returns-pdf'),
                 'reports-tax'                => $this->input->post('reports-tax'),
+                'reports-profit_loss'        => $this->input->post('reports-profit_loss'),
+
             ];
 
             if (POS) {

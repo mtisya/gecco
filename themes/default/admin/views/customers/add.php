@@ -59,10 +59,10 @@
                     <?= lang('contact_person', 'contact_person'); ?>
                     <?php echo form_input('contact_person', '', 'class="form-control" id="contact_person" data-bv-notempty="true"'); ?>
                 </div>-->
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <?= lang('email_address', 'email_address'); ?>
                         <input type="email" name="email" class="form-control" required="required" id="email_address"/>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <?= lang('phone', 'phone'); ?>
                         <input type="tel" name="phone" class="form-control" required="required" id="phone"/>

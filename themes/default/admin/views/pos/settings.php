@@ -265,13 +265,13 @@
                             <?= form_input('add_customer', $pos->add_customer, 'class="form-control tip" id="add_customer"'); ?>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4">
+                    <!-- <div class="col-md-4 col-sm-4">
                         <div class="form-group">
                             <?= lang('toggle_category_slider', 'toggle_category_slider'); ?>
                             <?= form_input('toggle_category_slider', $pos->toggle_category_slider, 'class="form-control tip" id="toggle_category_slider"'); ?>
                         </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
+                    </div> -->
+                    <!-- <div class="col-md-4 col-sm-4">
                         <div class="form-group">
                             <?= lang('toggle_subcategory_slider', 'toggle_subcategory_slider'); ?>
                             <?= form_input('toggle_subcategory_slider', $pos->toggle_subcategory_slider, 'class="form-control tip" id="toggle_subcategory_slider"'); ?>
@@ -282,7 +282,7 @@
                             <?= lang('toggle_brands_slider', 'toggle_brands_slider'); ?>
                             <?= form_input('toggle_brands_slider', $pos->toggle_brands_slider, 'class="form-control tip" id="toggle_brands_slider"'); ?>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-md-4 col-sm-4">
                         <div class="form-group">
                             <?= lang('mpesa_payment', 'mpesa_payment'); ?>

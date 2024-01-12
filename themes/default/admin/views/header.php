@@ -694,6 +694,11 @@
                                                 <i class="fa fa-money"></i><span class="text"> <?= lang('currencies'); ?></span>
                                             </a>
                                         </li>
+                                        <li id="system_settings_sms">
+                                            <a href="<?= admin_url('system_settings/sms') ?>">
+                                                <i class="fa fa-money"></i><span class="text"> <?= lang('Messages'); ?></span>
+                                            </a>
+                                        </li>
                                         <li id="system_settings_customer_groups">
                                             <a href="<?= admin_url('system_settings/customer_groups') ?>">
                                                 <i class="fa fa-chain"></i><span class="text"> <?= lang('customer_groups'); ?></span>

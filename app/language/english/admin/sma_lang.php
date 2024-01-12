@@ -568,6 +568,7 @@ $lang['returns']                = 'Returns';
 $lang['list_returns']           = 'List Returns';
 $lang['add_return']             = 'Add Return';
 $lang['tax_report']             = 'Tax Report';
+$lang['profit_loss_report']     = 'Profit/Loss Report';
 $lang['gst_no']                 = 'GST Number';
 $lang['no.']                    = 'No.';
 $lang['promos']                 = 'Promos';

@@ -359,6 +359,10 @@
                                             <label for="tax" class="padding05"><?= lang('tax_report') ?></label>
                                         </span>
                                         <span style="display:inline-block;">
+                                            <input type="checkbox" value="1" class="checkbox" id="profit_loss" name="reports-profit_loss" <?php echo $p->{'reports-profit_loss'} ? 'checked' : ''; ?>>
+                                            <label for="profit_loss" class="padding05"><?= lang('profit_loss_report') ?></label>
+                                        </span>
+                                        <span style="display:inline-block;">
                                             <input type="checkbox" value="1" class="checkbox" id="expenses" name="reports-expenses" <?php echo $p->{'reports-expenses'} ? 'checked' : ''; ?>>
                                             <label for="expenses" class="padding05"><?= lang('expenses') ?></label>
                                         </span>

@@ -32,7 +32,7 @@ class Customers extends MY_Controller
             $pg   = $this->site->getPriceGroupByID($this->input->post('price_group'));
             $data = [
                 'name'                => $this->input->post('name'),
-                'email'               => $this->input->post('email'),
+                //'email'               => $this->input->post('email'),
                 'group_id'            => '3',
                 'group_name'          => 'customer',
                 'customer_group_id'   => $this->input->post('customer_group'),
