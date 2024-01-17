@@ -7,7 +7,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<title>Africas Talking Integration in Codeigniter</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 	<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/js/bootstrap.min.js" />
 	
@@ -41,22 +40,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<?php if ($this->session->userdata('update_status')): ?>
 						<?php echo $this->session->userdata('update_status'); ?>
 					<?php endif ?>
-					<form action="" method="POST">
-						<div class="form-group text-black">
-							<label class="fs-1 bg-primary" for="sendTo">Send to: </label>
-							<input type="number" name="sendTo" id="sendTo" class="form-control" placeholder="+254 795742362" required="required" value="<?php echo set_value("sendTo"); ?>">
-						</div>
-
+					<div id="device-init-container">
+				<fieldset class="scheduler-border">
+					<legend class="scheduler-border">ETIMS Device Initialization</legend>
+					<input type="hidden" name="token" value="{CSRF_TOKEN}">
+					<div class="col-md-4 col-sm-4">
 						<div class="form-group">
-							<label class="fs-1 bg-primary" for="message">Message: </label>
-							<textarea name="message" id="message" class="form-control" rows="3" required="required" placeholder="Enter your message"><?php echo set_value("message"); ?></textarea>
+							<?= lang('tin', 'tin'); ?>
+							<?= form_input('tin', '', 'class="form-control tip" id="tin" data-key="tin"'); ?>
 						</div>
-
+					</div>
+					<div class="col-md-4 col-sm-4">
 						<div class="form-group">
-							<button class="btn btn-warning" type="reset">Reset</button>
-							<button class="btn btn-primary" type="submit">Send Message</button>
+							<?= lang('bhfId', 'bhfId'); ?>
+							<?= form_input('bhfId', '', 'class="form-control tip" id="bhfId" data-key="bhfId" '); ?>
 						</div>
-					</form>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<div class="form-group">
+							<?= lang('dvcSrlNo', 'dvcSrlNo'); ?>
+							<?= form_input('dvcSrlNo', '', 'class="form-control tip" id="dvcSrlNo" data-key="dvcSrlNo"'); ?>
+						</div>
+					</div>
+
+					<!-- Button to initialize the device -->
+					<button class="btn btn-primary" id="init-device-btn">Initialize Device</button>
+				</fieldset>
+
 				</div>
 			</div>
 		</div>

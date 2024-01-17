@@ -20,6 +20,7 @@ class system_settings extends MY_Controller
         $this->lang->admin_load('settings', $this->Settings->user_language);
         $this->load->library('form_validation');
         $this->load->admin_model('settings_model');
+        $this->load->model('SmsSettings_model');
         $this->upload_path        = 'assets/uploads/';
         $this->thumbs_path        = 'assets/uploads/thumbs/';
         $this->image_types        = 'gif|jpg|jpeg|png|tif';
@@ -734,49 +735,128 @@ class system_settings extends MY_Controller
         $meta = ['page_title' => lang('currencies'), 'bc' => $bc];
         $this->page_construct('settings/currencies', $meta, $this->data);
     }
-    public function sms()
-    {
-        $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
 
-        $bc   = [['link' => base_url(), 'page' => lang('home')], ['link' => admin_url('system_settings'), 'page' => lang('system_settings')], ['link' => '#', 'page' => lang('messages')]];
-        $meta = ['page_title' => lang('Messages'), 'bc' => $bc];
-        $this->page_construct('settings/message_form', $meta, $this->data);
+    // public function sms_settings1()
+    // {
+    //     // Debugging statement
+    //     // echo 'Reached your_method';
 
-        if ($this->form_validation->run() == FALSE) 
-		{
-			//$this->page_construct('settings/message_form', $meta, $this->data);
-		} 
-		else 
-		{
-			$to = $this->input->post('sendTo');
-			$message = $this->input->post('message');
+    //     $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
+    //     $this->load->model('SmsSettings_model'); // Load the model
+    //     $bc   = [['link' => base_url(), 'page' => lang('home')], ['link' => admin_url('system_settings'), 'page' => lang('system_settings')], ['link' => '#', 'page' => lang('sms_settings')]];
+    //     $meta = ['page_title' => lang('sms_settings'), 'bc' => $bc];
+    //     $this->page_construct('settings/smsform', $meta, $this->data);
 
-			if($to) {
+    //     // Check if the form is submitted
+    //     if ($this->input->post()) {
+    //     // Validate the form data (you might want to add validation rules)
+    //     $this->form_validation->set_rules('Username', 'Username', 'required');
+    //     $this->form_validation->set_rules('Apikey', 'Apikey', 'required');
 
-				if($this->msg91->send($to, $message) == TRUE)  {
-					$this->session->set_flashdata('update_status', '
-						<div class="alert alert-success">
-						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-						<strong><i class="dripicons-checkmark"></i> Hooray!</strong> Message Sent.
-					</div>');
-					redirect('Welcome','refresh');
-				}
-				 else 
-				 {
-					$this->session->set_flashdata('update_status', '
-						<div class="alert alert-danger">
-						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-						<strong><i class="dripicons-checkmark"></i> Oops!</strong> Message  not sent.
-					</div>');
-					redirect('Welcome','refresh');
+    //     if ($this->form_validation->run() == TRUE) {
+    //         // If validation passes, insert data into the database
+    //         $sms_data = array(
+    //             'Gateway' => json_decode(json_encode($this->input->post('Gateway'))),
+    //             'Username' =>json_decode(json_encode( $this->input->post('Username'))),
+    //             'Apikey' => json_decode(json_encode( $this->input->post('Apikey')))
+    //         );
+    //         console_log ($sms_data);
+    //         $this->SmsSettings_model->insert_sms_settings($sms_data);
 
-				}
-			}
+    //         // Redirect or set success message as needed
+    //         // admin_redirect('system_settings/sms_settings');
+    //     }
+    // }
 
-			
-		}
+    // }
+
+    // public function sms_settings() {
+
+
+    //     // Retrieve data from the POST request
+    //     $credentials = json_decode(json_encode($this->input->raw_input_stream),true);
+
+    //    // echo $credentials;
+
+    //     // Your implementation to send the request to the specified API endpoint
+    //     $response = $this->sms_settings2($credentials);
+
+    //     // Return the response as JSON
+    //     $this->output
+    //         ->set_content_type('application/json')
+    //         ->set_output(json_encode($response));
+            
+    //      //echo $response;
+    // }
+
+
+
+
+
+    // /**
+    //  * Send Device Initialization Request to the specified API endpoint
+    //  * @param array $credentials
+    //  * @return array API response
+    //  */
+    // private function sms_settings2($credentials) {
+    //     //$apiEndpoint = 'https://etims-api-sbx.kra.go.ke/etims-api/selectInitOsdcInfo';
+    //     $apiEndpoint = '';
+
+
+    //     $curl = curl_init();
+    //     curl_setopt_array($curl, array(
+    //         CURLOPT_URL => $apiEndpoint,
+    //         CURLOPT_RETURNTRANSFER => true,
+    //         CURLOPT_ENCODING => '',
+    //         CURLOPT_MAXREDIRS => 10,
+    //         CURLOPT_TIMEOUT => 0,
+    //         CURLOPT_FOLLOWLOCATION => true,
+    //         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    //         CURLOPT_CUSTOMREQUEST => 'POST',
+    //         CURLOPT_POSTFIELDS =>$credentials,
+    //         CURLOPT_HTTPHEADER => array(
+    //             'Content-Type: application/json',
+    //         ),
+    //     ));
+
+    //     $response = curl_exec($curl);
+
+    //     curl_close($curl);
+    //      //$response;
+
+    //     return  $covert = json_decode($response,true);
+        
+    //     // echo $response;
+    // }
+
+    public function sms_settings() {
+        // Check if it's a POST request
+        if ($this->input->server('REQUEST_METHOD') === 'POST') {
+            // Get the form data
+            $gateway = $this->input->post('gateway');
+            $username = $this->input->post('username');
+            $apikey = $this->input->post('apikey');
+
+            // Validate or process the form data as needed
+            // For example, you can check for required fields, perform database operations, etc.
+
+            // For simplicity, let's assume you have a model method to handle saving the SMS settings
+            $result = $this->system_settings_model->save_sms_settings($gateway, $username, $apikey);
+
+            // Return a response (JSON in this case)
+            if ($result) {
+                $response = array('success' => true, 'message' => 'SMS settings saved successfully');
+            } else {
+                $response = array('success' => false, 'message' => 'Failed to save SMS settings');
+            }
+
+            // Send the JSON response
+            $this->output->set_content_type('application/json')->set_output(json_encode($response));
+        } else {
+            // Handle non-POST requests as needed
+            show_404();
+        }
     }
-
     public function currency_actions()
     {
         $this->form_validation->set_rules('form_action', lang('form_action'), 'required');

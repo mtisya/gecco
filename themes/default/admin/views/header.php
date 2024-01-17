@@ -695,7 +695,7 @@
                                             </a>
                                         </li>
                                         <li id="system_settings_sms">
-                                            <a href="<?= admin_url('system_settings/sms') ?>">
+                                            <a href="<?= admin_url('welcome/index') ?>">
                                                 <i class="fa fa-money"></i><span class="text"> <?= lang('Messages'); ?></span>
                                             </a>
                                         </li>
@@ -747,6 +747,16 @@
                                         <li id="system_settings_email_templates">
                                             <a href="<?= admin_url('system_settings/email_templates') ?>">
                                                 <i class="fa fa-envelope"></i><span class="text"> <?= lang('email_templates'); ?></span>
+                                            </a>
+                                        </li>
+                                        <li id="system_settings_sms_settings">
+                                        <a href="<?= admin_url('system_settings/sms_settings') ?>">
+                                            <i class="fa fa-cogs"></i><span class="text"> <?= lang('sms_settings'); ?></span>
+                                        </a>
+                                        </li>
+                                        <li id="system_settings_send_sms">
+                                            <a href="<?= admin_url('system_settings/send_sms') ?>">
+                                                <i class="fa fa-send"></i><span class="text"> <?= lang('send_sms'); ?></span>
                                             </a>
                                         </li>
                                         <li id="system_settings_user_groups">

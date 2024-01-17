@@ -4,12 +4,12 @@
 * Author: Anbuselvan Rocky (www.fb.me/anburocky3)
 * No Licence bullshit! Use it according to your logic!
 */
-class Msg91 {
+class africastalking {
 
 	public function __construct () {
 		$this->ci =& get_instance();
-        $this->authKey = "YOUR-AUTH-KEY";
-        $this->senderID = "YOUR-SENDER-ID";
+        $this->authKey = "a9ec3b849107a547801ee252841f7b0c0f3c310829cf62b289153787c4edcfb7";
+        $this->username = "sandbox";
 	}
 
     /**
@@ -24,7 +24,7 @@ class Msg91 {
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-          CURLOPT_URL => "http://control.msg91.com/api/balance.php?type=4&authkey=$this->authKey",
+          CURLOPT_URL => "https://api.sandbox.africastalking.com/version1/user?$this->username",
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => "",
           CURLOPT_MAXREDIRS => 10,
@@ -59,13 +59,13 @@ class Msg91 {
             $message = urlencode($message);
 
             //Define route
-            $route = "4";
+            //$route = "4";
 
             //Prepare you post parameters
             $postData = '{
                 "sender": "'.$this->senderID.'",
-                "route": "'.$route.'",
-                "country": "91",
+                
+                "country": "254",
                 "sms": [
                     {
                         "message": "'.$message.'",
@@ -75,9 +75,9 @@ class Msg91 {
                     }
                 ]
             }';        
-
+            dd($postData);
             //API URL
-            $url="http://api.msg91.com/api/v2/sendsms";
+            $url="https://api.sandbox.africastalking.com/version1/messaging";
 
             // init the resource
             $ch = curl_init();

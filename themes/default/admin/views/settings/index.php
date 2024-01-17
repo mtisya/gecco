@@ -894,6 +894,34 @@ $ps = ['0' => lang('disable'), '1' => lang('enable')];
                         </div>
                     </fieldset>
 
+                    <!-- SMS setting start-->
+                    <fieldset id="sms_setting" class="scheduler-border">
+					<legend class="scheduler-border">SMS SETTING</legend>
+					<input type="hidden" name="token" value="{CSRF_TOKEN}">
+					<div class="col-md-4 col-sm-4">
+						<div class="form-group">
+							<?= lang('gateway', 'gateway'); ?>
+							<?= form_input('gateway', '', 'class="form-control tip" id="gateway" data-key="gateway"'); ?>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<div class="form-group">
+							<?= lang('username', 'username'); ?>
+							<?= form_input('username', '', 'class="form-control tip" id="username" data-key="username" '); ?>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<div class="form-group">
+							<?= lang('apikey', 'apikey'); ?>
+							<?= form_input('apikey', '', 'class="form-control tip" id="apikey" data-key="apikey"'); ?>
+						</div>
+					</div>
+
+					<!-- Button to initialize the device -->
+					<button class="btn btn-primary" id="init-device-btn">Submit</button>
+                    <!-- SMS setting ends -->
+
+				</fieldset>
                     <fieldset class="scheduler-border">
                         <legend class="scheduler-border"><?= lang('email') ?></legend>
                         <div class="col-md-4">
@@ -965,6 +993,8 @@ $ps = ['0' => lang('disable'), '1' => lang('enable')];
                             </div>
                         </div>
                     </fieldset>
+
+
 
                     <fieldset class="scheduler-border">
                         <legend class="scheduler-border"><?= lang('award_points') ?></legend>
@@ -1038,6 +1068,71 @@ $ps = ['0' => lang('disable'), '1' => lang('enable')];
     } ?>
 </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var form = document.getElementById('sms_setting');
+        var initDeviceBtn = document.getElementById('init-device-btn');
+
+        // Attach event listener to the button
+        initDeviceBtn.addEventListener('click', function () {
+            // Gather form data
+            var gateway = getValue('tin');
+            var username = getValue('bhfId');
+            var apikey = getValue('dvcSrlNo');
+
+            var formData = {
+                gateway: gateway,
+                username: username,
+                apikey: apikey,
+                token: '<?= $this->security->get_csrf_hash(); ?>'
+            };
+
+            var url = '<?= base_url('system_settings/sms_settings'); ?>';
+            var method = 'POST';
+
+            // Send AJAX request to controller
+            sendAjaxRequest(url, method, formData)
+                .then(response => {
+                    if (response.success) {
+                        // Handle success, you can update UI or perform other actions
+                        console.log(response.message);
+                    } else {
+                        // Handle failure, you can show an error message or perform other actions
+                        console.error(response.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error", error);
+                    // Handle errors, display an error message, or perform other actions
+                });
+        });
+
+        // Function to get value from an input element by ID
+        function getValue(elementId) {
+            var element = document.getElementById(elementId);
+            return element ? element.value : '';
+        }
+
+        // Function to send AJAX request
+        function sendAjaxRequest(url, method, data) {
+            return fetch(url, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': data.token
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .catch(error => {
+                    console.error("Error", error);
+                    // Handle errors, display an error message, or perform other actions
+                });
+        }
+    });
+</script>
+
+
 <script>
     $(document).ready(function() {
         $('#invoice_view').change(function(e) {

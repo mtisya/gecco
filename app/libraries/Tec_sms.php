@@ -4,9 +4,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
  *  ==============================================================================
- *  Author  : Mian Saleem
- *  Email   : saleem@tecdiary.com
- *  For     : SMS APIs
+ *  Author  : Sammy Mutisya
+ *  Email   : msammy@clone-technologies.com
+ *  For     : SMS Lib
  *  ==============================================================================
  */
 
