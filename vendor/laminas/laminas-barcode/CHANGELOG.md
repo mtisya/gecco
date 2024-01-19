@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 2.13.0 - 2023-12-05
+
+
+-----
+
+### Release Notes for [2.13.0](https://github.com/laminas/laminas-barcode/milestone/12)
+
+Feature release (minor)
+
+### 2.13.0
+
+- Total issues resolved: **0**
+- Total pull requests resolved: **1**
+- Total contributors: **1**
+
+#### Enhancement
+
+ - [23: Add php 8.3 and drop php 8.0](https://github.com/laminas/laminas-barcode/pull/23) thanks to @Xerkus
+
 ## 2.12.0 - 2022-11-15
 
 

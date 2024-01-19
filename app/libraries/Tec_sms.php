@@ -10,7 +10,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  *  ==============================================================================
  */
 
-use Tecdiary\Sms\Sms;
+ use AfricasTalking\SDK\AfricasTalking;
 
 class Tec_sms
 {

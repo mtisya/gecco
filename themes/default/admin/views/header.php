@@ -637,6 +637,12 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li class="mm_hr">
+                                <a class="submenu" href="http://localhost/cloneERP/admin/">
+                                    <i class="fa fa-info-circle"></i><span class="text"> <?= lang('HR and Payroll'); ?></span>
+                                </a>
+                            </li>
+
                             <li class="mm_notifications">
                                 <a class="submenu" href="<?= admin_url('notifications'); ?>">
                                     <i class="fa fa-info-circle"></i><span class="text"> <?= lang('notifications'); ?></span>

@@ -41,15 +41,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<?php if ($this->session->userdata('update_status')): ?>
 						<?php echo $this->session->userdata('update_status'); ?>
 					<?php endif ?>
-					<form action="" method="POST">
+					<!-- Your form view -->
+					<?php if ($this->session->flashdata('success_message')): ?>
+						<div class="alert alert-success">
+							<?= $this->session->flashdata('success_message') ?>
+						</div>
+					<?php endif; ?>
+					<form action="http://localhost/gecco/admin/atsms/sendSms" method="POST">
 						<div class="form-group text-black">
 							<label class="fs-1 bg-primary" for="sendTo">Send to: </label>
-							<input type="number" name="sendTo" id="sendTo" class="form-control" placeholder="+254 795742362" required="required" value="<?php echo set_value("sendTo"); ?>">
+							<input type="number" name="sendTo" id="sendTo" class="form-control" placeholder="Customer No." required="required" value="<?php echo set_value("sendTo"); ?>">
 						</div>
 
-						<div class="form-group">
+						<div class="form-group text-black">
 							<label class="fs-1 bg-primary" for="message">Message: </label>
-							<textarea name="message" id="message" class="form-control" rows="3" required="required" placeholder="Enter your message"><?php echo set_value("message"); ?></textarea>
+							<textarea name="message" id="message" class="form-control" rows="8" required="required" placeholder="Enter your message"><?php echo set_value("message"); ?></textarea>
 						</div>
 
 						<div class="form-group">

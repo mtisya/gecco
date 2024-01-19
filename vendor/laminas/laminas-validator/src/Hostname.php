@@ -476,7 +476,6 @@ class Hostname extends AbstractValidator
         'esq',
         'estate',
         'et',
-        'etisalat',
         'eu',
         'eurovision',
         'eus',
@@ -1114,7 +1113,6 @@ class Hostname extends AbstractValidator
         'sbi',
         'sbs',
         'sc',
-        'sca',
         'scb',
         'schaeffler',
         'schmidt',
@@ -1332,7 +1330,6 @@ class Hostname extends AbstractValidator
         'vlaanderen',
         'vn',
         'vodka',
-        'volkswagen',
         'volvo',
         'vote',
         'voting',
@@ -1467,7 +1464,6 @@ class Hostname extends AbstractValidator
         'ارامكو',
         'ایران',
         'العليان',
-        'اتصالات',
         'امارات',
         'بازار',
         'موريتانيا',
@@ -2216,6 +2212,10 @@ class Hostname extends AbstractValidator
 
         for ($indexe = $separator ? $separator + 1 : 0; $indexe < $lengthe; ++$lengthd) {
             for ($oldIndex = $index, $pos = 1, $key = 36; 1; $key += 36) {
+                if (! isset($encoded[$indexe])) {
+                    break 2;
+                }
+
                 $hex   = ord($encoded[$indexe++]);
                 $digit = $hex - 48 < 10 ? $hex - 22
                        : ($hex - 65 < 26 ? $hex - 65

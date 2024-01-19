@@ -1,9 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-/**
-* MSG91 Library file
-* Author: Anbuselvan Rocky (www.fb.me/anburocky3)
-* No Licence bullshit! Use it according to your logic!
-*/
+
 class africastalking {
 
 	public function __construct () {
@@ -24,7 +20,7 @@ class africastalking {
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-          CURLOPT_URL => "https://api.sandbox.africastalking.com/version1/user?$this->username",
+          CURLOPT_URL => "https://api.africastalking.com/version1/user?",
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => "",
           CURLOPT_MAXREDIRS => 10,
@@ -47,37 +43,10 @@ class africastalking {
         }
     }    
 
-    public function send($to, $message) 
-    {
-        // Check SMS Balance, if it has credit. It will send the message with $to, $message parameters.
-        if (!$this->checkSMSBalance() >= 1) {
-            return false;   
-        }
-        else
-        {
-            //Your message to send, Add URL encoding here.
-            $message = urlencode($message);
-
-            //Define route
-            //$route = "4";
-
-            //Prepare you post parameters
-            $postData = '{
-                "sender": "'.$this->senderID.'",
-                
-                "country": "254",
-                "sms": [
-                    {
-                        "message": "'.$message.'",
-                        "to": [
-                            "'.$to.'"
-                        ]
-                    }
-                ]
-            }';        
-            dd($postData);
+    public function sendSms() 
+    { 
             //API URL
-            $url="https://api.sandbox.africastalking.com/version1/messaging";
+            $url="https://api.africastalking.com/version1/user";
 
             // init the resource
             $ch = curl_init();
@@ -123,35 +92,4 @@ class africastalking {
 
         }        
     }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>

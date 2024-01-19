@@ -736,38 +736,56 @@ class system_settings extends MY_Controller
         $this->page_construct('settings/currencies', $meta, $this->data);
     }
 
-    // public function sms_settings1()
-    // {
-    //     // Debugging statement
-    //     // echo 'Reached your_method';
+    public function sms_settings()
+    {
+        // Debugging statement
+        // echo 'Reached your_method';
 
-    //     $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
-    //     $this->load->model('SmsSettings_model'); // Load the model
-    //     $bc   = [['link' => base_url(), 'page' => lang('home')], ['link' => admin_url('system_settings'), 'page' => lang('system_settings')], ['link' => '#', 'page' => lang('sms_settings')]];
-    //     $meta = ['page_title' => lang('sms_settings'), 'bc' => $bc];
-    //     $this->page_construct('settings/smsform', $meta, $this->data);
+        $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
+        $this->load->model('SmsSettings_model'); // Load the model
+        $bc   = [['link' => base_url(), 'page' => lang('home')], ['link' => admin_url('system_settings'), 'page' => lang('system_settings')], ['link' => '#', 'page' => lang('sms_settings')]];
+        $meta = ['page_title' => lang('sms_settings'), 'bc' => $bc];
+        $this->page_construct('settings/message_form', $meta, $this->data);
 
-    //     // Check if the form is submitted
-    //     if ($this->input->post()) {
-    //     // Validate the form data (you might want to add validation rules)
-    //     $this->form_validation->set_rules('Username', 'Username', 'required');
-    //     $this->form_validation->set_rules('Apikey', 'Apikey', 'required');
+        // Check if the form is submitted
+        if ($this->input->post()) {
+        // Validate the form data (you might want to add validation rules)
+        $this->form_validation->set_rules('Username', 'Username', 'required');
+        $this->form_validation->set_rules('Apikey', 'Apikey', 'required');
 
-    //     if ($this->form_validation->run() == TRUE) {
-    //         // If validation passes, insert data into the database
-    //         $sms_data = array(
-    //             'Gateway' => json_decode(json_encode($this->input->post('Gateway'))),
-    //             'Username' =>json_decode(json_encode( $this->input->post('Username'))),
-    //             'Apikey' => json_decode(json_encode( $this->input->post('Apikey')))
-    //         );
-    //         console_log ($sms_data);
-    //         $this->SmsSettings_model->insert_sms_settings($sms_data);
+        if ($this->form_validation->run() == TRUE) {
+            // If validation passes, insert data into the database
+            $sms_data = array(
+                'Gateway' => json_decode(json_encode($this->input->post('Gateway'))),
+                'Username' =>json_decode(json_encode( $this->input->post('Username'))),
+                'Apikey' => json_decode(json_encode( $this->input->post('Apikey')))
+            );
+            console_log ($sms_data);
+            $this->SmsSettings_model->insert_sms_settings($sms_data);
 
-    //         // Redirect or set success message as needed
-    //         // admin_redirect('system_settings/sms_settings');
-    //     }
-    // }
+            // Redirect or set success message as needed
+            // admin_redirect('system_settings/sms_settings');
+        }
+    }
+    }
+    public function send_sms()
+    {
+        // Debugging statement
+        // echo 'Reached your_method';
 
+        $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
+        //$this->load->model('SmsSettings_model'); // Load the model
+        $bc   = [['link' => base_url(), 'page' => lang('home')], ['link' => admin_url('send_sms'), 'page' => lang('send_sms')], ['link' => '#', 'page' => lang('send_sms')]];
+        $meta = ['page_title' => lang('send_sms'), 'bc' => $bc];
+        $this->page_construct('settings/message_form', $meta, $this->data);
+
+        // Check if the form is submitted
+        if ($this->input->post()) {
+        // Validate the form data (you might want to add validation rules)
+        $this->form_validation->set_rules('Username', 'Username', 'required');
+        $this->form_validation->set_rules('Apikey', 'Apikey', 'required');
+   
+    }
     // }
 
     // public function sms_settings() {
@@ -828,8 +846,9 @@ class system_settings extends MY_Controller
         
     //     // echo $response;
     // }
+    }
 
-    public function sms_settings() {
+    public function sms_settings88() {
         // Check if it's a POST request
         if ($this->input->server('REQUEST_METHOD') === 'POST') {
             // Get the form data

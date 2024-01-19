@@ -1,0 +1,7 @@
+{
+    "extensions": [
+        "gd"
+    ],
+    "ignore_php_platform_requirements": {
+    }
+}

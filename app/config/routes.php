@@ -7,7 +7,7 @@ $route['404_override']         = 'notify/error_404';
 $route['translate_uri_dashes'] = true;
 $route['admin/pos/mcus2b']  = 'mpesa/mcus2b';
 $route['admin/pos/mcus2b1']  = 'mpesa/mcus2b1';
-$route['admin/smsform']  = 'admin/system_settings/sms_settings';
+$route['admin/atsms/sendSms']  = 'admin/atsms/sendSms';
 
 // Shop routes
 $route['shop']                   = 'main';
