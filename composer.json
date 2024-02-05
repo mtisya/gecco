@@ -14,7 +14,7 @@
         "tecdiary/sms": "^1.0.2",
         "league/oauth2-google": "^3.0",
         "laminas/laminas-barcode": "^2.8",
-        "phpoffice/phpspreadsheet": "^1.15",
+        "phpoffice/phpspreadsheet": "^1.18",
         "arutil/ar-php": "^0.1.1",
         "salla/zatca": "^1.0",
         "chillerlan/php-qrcode": "^4.3",

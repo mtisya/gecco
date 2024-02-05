@@ -4,8 +4,8 @@ class africastalking {
 
 	public function __construct () {
 		$this->ci =& get_instance();
-        $this->authKey = "a9ec3b849107a547801ee252841f7b0c0f3c310829cf62b289153787c4edcfb7";
-        $this->username = "sandbox";
+        $this->authKey = "1d5594052e2423ca585a8d7c378806db98b445dc2d68537a1b602ab303b8cff5";
+        $this->username = "wetlab";
 	}
 
     /**

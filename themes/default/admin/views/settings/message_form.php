@@ -10,6 +10,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/js/bootstrap.min.js" />
+	<style>
+    .text-black,
+    .text-black textarea {
+        color: black;
+    }
+	</style>
+
 	
 </head>
 <body>
@@ -47,17 +54,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<?= $this->session->flashdata('success_message') ?>
 						</div>
 					<?php endif; ?>
-					<form action="http://localhost/gecco/admin/atsms/sendSms" method="POST">
+					<form action="http://localhost/gecco/admin/atsms/sendSms" method="POST" class="text-black">
 						<div class="form-group text-black">
 							<label class="fs-1 bg-primary" for="sendTo">Send to: </label>
-							<input type="number" name="sendTo" id="sendTo" class="form-control" placeholder="Customer No." required="required" value="<?php echo set_value("sendTo"); ?>">
+							<input type="number" name="sendTo" id="sendTo" class="form-control" placeholder="Customer No." required="required" value="<?php echo htmlspecialchars(set_value("sendTo")); ?>">
 						</div>
-
-						<div class="form-group text-black">
+						<div class="form-group">
 							<label class="fs-1 bg-primary" for="message">Message: </label>
-							<textarea name="message" id="message" class="form-control" rows="8" required="required" placeholder="Enter your message"><?php echo set_value("message"); ?></textarea>
+							<textarea name="message" id="message" rows="8" required="required" class="form-control" placeholder="Enter your message"><?php echo strip_tags(set_value("message")); ?></textarea>
 						</div>
-
+						
 						<div class="form-group">
 							<button class="btn btn-warning" type="reset">Reset</button>
 							<button class="btn btn-primary" type="submit">Send Message</button>

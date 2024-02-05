@@ -545,21 +545,24 @@ class Reports_model extends CI_Model
         return false;
     }
 
-    public function getTotalPurchases($start, $end, $warehouse_id = null)
+    public function getTotalPurchases($start_date, $end_date, $warehouse_id = null)
     {
         $this->db->select('count(id) as total, sum(COALESCE(grand_total, 0)) as total_amount, SUM(COALESCE(paid, 0)) as paid, SUM(COALESCE(total_tax, 0)) as tax', false)
             ->where('status !=', 'pending')
-            ->where('date BETWEEN ' . $start . ' and ' . $end);
+            ->where('date BETWEEN "' . $start_date . '" and "' . $end_date . '"');
+    
         if ($warehouse_id) {
             $this->db->where('warehouse_id', $warehouse_id);
         }
+    
         $q = $this->db->get('purchases');
+    
         if ($q->num_rows() > 0) {
             return $q->row();
         }
+    
         return false;
     }
-
     public function getTotalReceivedAmount($start, $end)
     {
         $this->db->select('count(id) as total, SUM(COALESCE(amount, 0)) as total_amount', false)

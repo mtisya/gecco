@@ -2,6 +2,9 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class Reports extends MY_Controller
 {
     public function __construct()
@@ -2875,7 +2878,226 @@ class Reports extends MY_Controller
         $meta = ['page_title' => lang('profit_loss'), 'bc' => $bc];
         $this->page_construct('reports/profit_loss', $meta, $this->data);
     }
+   
+    public function profit1_loss($start_date = null, $end_date = null)
+    {
+        $this->sma->checkPermissions('profit_loss');
 
+        $start_date = $this->input->get('start_date') ? $this->input->get('start_date') : null;
+        $end_date = $this->input->get('end_date') ? $this->input->get('end_date') : null;
+        if (!$start_date) {
+            $start = $this->db->escape(date('Y-m') . '-1');
+            $start_date = date('Y-m') . '-1';
+        } else {
+            $start = $this->db->escape(urldecode($start_date));
+        }
+        if (!$end_date) {
+            $end = $this->db->escape(date('Y-m-d H:i'));
+            $end_date = date('Y-m-d H:i');
+        } else {
+            $end = $this->db->escape(urldecode($end_date));
+        }
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+    
+        $totalPurchasesData = $this->reports_model->getTotalPurchases($start, $end);
+        $this->data['total_purchases'] = "Ksh. $totalPurchasesData->total_amount";
+        $totalSalesData = $this->reports_model->getTotalSales($start, $end);
+        $this->data['total_sales'] = "Ksh. $totalSalesData->total_amount";
+        $totalReturnsData = $this->reports_model->getTotalReturnSales($start, $end);
+        $this->data['total_return_sales'] = "Ksh. $totalReturnsData->total_amount";
+        $totalExpensesData = $this->reports_model->getTotalExpenses($start, $end);
+        $this->data['total_expenses'] = "Ksh. $totalExpensesData->total_amount";
+        $totalPaidData = $this->reports_model->getTotalPaidAmount($start, $end);
+        $this->data['total_paid'] = "Ksh. $totalPaidData->total_amount";
+        $totalReceivedData = $this->reports_model->getTotalReceivedAmount($start, $end);
+        $this->data['total_received'] = "Ksh. $totalReceivedData->total_amount";
+        $totalReceivedCashData = $this->reports_model->getTotalReceivedCashAmount($start, $end);
+        $this->data['total_received_cash'] = "Ksh. $totalReceivedCashData->total_amount";
+        // $totalReceivedccData = $this->reports_model->getTotalReceivedCCAmount($start, $end);
+        // $this->data['total_received_cc'] = "Ksh. $totalReceivedccData->total_amount";
+        // $totalReceiveChequeData = $this->reports_model->getTotalReceivedChequeAmount($start, $end);
+        // $this->data['total_received_cheque'] = "Amount: $totalReceiveChequeData->total_amount";
+        // $totalReceivepppData = $this->reports_model->getTotalReceivedPPPAmount($start, $end);
+        // $this->data['total_received_ppp'] = "Amount: $totalReceivepppData->total_amount";
+        // $totalReceivedStripeData = $this->reports_model->getTotalReceivedStripeAmount($start, $end);
+        // $this->data['total_received_stripe'] = "Amount: $totalReceivedStripeData->total_amount";
+        // $totalReturnedData = $this->reports_model->getTotalReturnedAmount($start, $end);
+        // $this->data['total_returned'] =  "Amount: $totalReturnedData->total_amount";
+        // $this->data['start'] = urldecode($start_date);
+        // $this->data['end'] = urldecode($end_date);
+
+
+        $warehouses = $this->site->getAllWarehouses();
+        foreach ($warehouses as $warehouse) {
+            $total_purchases = $this->reports_model->getTotalPurchases($start, $end, $warehouse->id);
+            $total_sales = $this->reports_model->getTotalSales($start, $end, $warehouse->id);
+            $total_returns = $this->reports_model->getTotalReturnSales($start, $end, $warehouse->id);
+            $total_expenses = $this->reports_model->getTotalExpenses($start, $end, $warehouse->id);
+            $warehouses_report[] = [
+                'warehouse'       => $warehouse,
+                'total_purchases' => $total_purchases,
+                'total_sales'     => $total_sales,
+                'total_returns'   => $total_returns,
+                'total_expenses'  => $total_expenses,
+            ];
+        }
+        $this->data['warehouses_report'] = $warehouses_report;
+
+        $bc = [['link' => base_url(), 'page' => lang('home')], ['link' => admin_url('reports'), 'page' => lang('reports')], ['link' => '#', 'page' => lang('profit_loss')]];
+        $meta = ['page_title' => lang('profit_loss'), 'bc' => $bc];
+        $this->page_construct('reports/profit_loss', $meta, $this->data);
+
+
+    
+        // Load the PhpSpreadsheet library
+        $this->load->library('excel');
+
+    
+        // Create a new PHPExcel object
+        $objPHPExcel = new PhpOffice\PhpSpreadsheet\Spreadsheet();
+    
+         // Set the active Excel worksheet to sheet 0
+        $objPHPExcel->setActiveSheetIndex(0);
+    
+        // Add column headers
+        $objPHPExcel->getActiveSheet()->setCellValue('A1', 'Total Purchases');
+        $objPHPExcel->getActiveSheet()->setCellValue('B1', 'Total Sales');
+        $objPHPExcel->getActiveSheet()->setCellValue('C1', 'Total Return Sales');
+        $objPHPExcel->getActiveSheet()->setCellValue('D1', 'Total Expenses');
+        $objPHPExcel->getActiveSheet()->setCellValue('E1', 'Total Paid');
+        $objPHPExcel->getActiveSheet()->setCellValue('F1', 'Total Received');
+        $objPHPExcel->getActiveSheet()->setCellValue('G1', 'Total Received Cash');
+        $objPHPExcel->getActiveSheet()->setCellValue('F4', 'Profit or Loss');
+        // $objPHPExcel->getActiveSheet()->setCellValue('H1', 'Total Received CC');
+        // $objPHPExcel->getActiveSheet()->setCellValue('I1', 'Total Received Cheque');
+        // $objPHPExcel->getActiveSheet()->setCellValue('J1', 'Total Received PPP');
+        // $objPHPExcel->getActiveSheet()->setCellValue('K1', 'Total Received Stripe');
+        // $objPHPExcel->getActiveSheet()->setCellValue('L1', 'Total Returned');
+
+        // Set column width for all columns to 129 pixels
+        for ($col = 'A'; $col <= 'G'; $col++) {
+            $objPHPExcel->getActiveSheet()->getColumnDimension($col)->setWidth(19);
+        }
+        // Set row height for all rows to 30 pixels
+        for ($row = 1; $row <= $objPHPExcel->getActiveSheet()->getHighestRow(); $row++) {
+            $objPHPExcel->getActiveSheet()->getRowDimension($row)->setRowHeight(30);
+        }
+
+        // Set header row background color to green
+        $headerStyle = [
+            'fill' => [
+                'type'  => PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                'color' => ['rgb' => 'blue'],
+            ],
+        ];
+
+        // Apply style to each cell in the header row
+        for ($col = 'A'; $col <= 'G'; $col++) {
+            $objPHPExcel->getActiveSheet()->getStyle($col . '1')->applyFromArray($headerStyle);
+        }
+
+    
+        // Add data
+        $objPHPExcel->getActiveSheet()->setCellValue('A2', $this->data['total_purchases']);
+        $objPHPExcel->getActiveSheet()->setCellValue('B2', $this->data['total_sales']);
+        $objPHPExcel->getActiveSheet()->setCellValue('C2', $this->data['total_return_sales']);
+        $objPHPExcel->getActiveSheet()->setCellValue('D2', $this->data['total_expenses']);
+        $objPHPExcel->getActiveSheet()->setCellValue('E2', $this->data['total_paid']);
+        $objPHPExcel->getActiveSheet()->setCellValue('F2', $this->data['total_received']);
+        $objPHPExcel->getActiveSheet()->setCellValue('G2', $this->data['total_received_cash']);
+        // $objPHPExcel->getActiveSheet()->setCellValue('H2', $this->data['total_received_cc']);
+        // $objPHPExcel->getActiveSheet()->setCellValue('I2', $this->data['total_received_cheque']);
+        // $objPHPExcel->getActiveSheet()->setCellValue('J2', $this->data['total_received_ppp']);
+        // $objPHPExcel->getActiveSheet()->setCellValue('K2', $this->data['total_received_stripe']);
+        // $objPHPExcel->getActiveSheet()->setCellValue('J2', $this->data['total_returned']);
+
+        // Calculate profit or loss
+        $total_purchases = floatval(str_replace("Ksh. ", "", $this->data['total_purchases']));
+        $total_sales = floatval(str_replace("Ksh. ", "", $this->data['total_sales']));
+        $total_return_sales = floatval(str_replace("Ksh. ", "", $this->data['total_return_sales']));
+        $total_expenses = floatval(str_replace("Ksh. ", "", $this->data['total_expenses']));
+        $total_paid = floatval(str_replace("Ksh. ", "", $this->data['total_paid']));
+        $total_received = floatval(str_replace("Ksh. ", "", $this->data['total_received']));
+        $total_received_cash = floatval(str_replace("Ksh. ", "", $this->data['total_received_cash']));
+
+        $profit_or_loss = $total_sales + $total_return_sales - $total_purchases - $total_expenses + $total_received_cash - $total_paid;
+        $objPHPExcel->getActiveSheet()->setCellValue('G4', "Ksh. " . number_format($profit_or_loss, 2));
+        
+        // Output the Excel file
+        $this->excel->getActiveSheet()->setTitle('Profit Loss Report');
+        // Output the Excel file
+        $filename = 'profit_loss_report.xlsx';
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="' . $filename . '"');
+        header('Cache-Control: max-age=0');
+        $objWriter = PhpOffice\PhpSpreadsheet\IOFactory::createWriter($objPHPExcel, 'Xlsx');
+        $objWriter->save('php://output');
+        exit;
+    }
+
+    public function profit11_loss($start_date = null, $end_date = null, $pdf = null)
+{
+    $this->sma->checkPermissions('purchases', true);
+
+    $warehouse_id = $this->input->get('warehouse_id') ? $this->input->get('warehouse_id') : null;
+    $start_date = $this->input->get('start_date') ? $this->input->get('start_date') : null;
+    $end_date = $this->input->get('end_date') ? $this->input->get('end_date') : null;
+
+    if ($start_date) {
+        $start_date = $this->sma->fld($start_date);
+        $end_date = $this->sma->fld($end_date);
+    }
+
+    $this->db->select('count(id) as total, sum(COALESCE(amount, 0)) as total_amount, SUM(COALESCE(paid, 0)) as paid, SUM(COALESCE(total_tax, 0)) as tax', false)
+        ->where('status !=', 'pending')
+        ->where('date BETWEEN "' . $start_date . '" and "' . $end_date . '"');
+
+    if ($warehouse_id) {
+        $this->db->where('warehouse_id', $warehouse_id);
+    }
+
+    $q = $this->db->get('payments');
+
+    if ($q->num_rows() > 0) {
+        foreach ($q->result() as $row) {
+            $data = $row;
+        }
+    } else {
+        $data = null;
+    }
+
+    if (!empty($data)) {
+        $this->load->library('excel');
+        $this->excel->setActiveSheetIndex(0);
+        $this->excel->getActiveSheet()->setTitle(lang('purchases_report'));
+        $this->excel->getActiveSheet()->SetCellValue('A1', lang('Purchases'));
+
+        $row = 2;
+        $total = 0;
+        foreach ($data as $data_row) {
+            $this->excel->getActiveSheet()->SetCellValue('A' . $row, $this->sma->hrld($data_row->date));
+            if ('returned' == $data_row->type || 'sent' == $data_row->type) {
+                $total -= $data_row->amount;
+            } else {
+                $total += $data_row->amount;
+            }
+            $row++;
+        }
+        $this->excel->getActiveSheet()->getStyle('F' . $row)->getBorders()
+            ->getTop()->setBorderStyle('medium');
+        $this->excel->getActiveSheet()->SetCellValue('B' . $row, $total);
+
+        $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(20);
+        $filename = 'purchases_report';
+        $this->load->helper('excel');
+        create_excel($this->excel, $filename);
+    }
+
+    $this->session->set_flashdata('error', lang('nothing_found'));
+    redirect($_SERVER['HTTP_REFERER']);
+}
+
+    
     public function profit_loss_pdf($start_date = null, $end_date = null)
     {
         $this->sma->checkPermissions('profit_loss');

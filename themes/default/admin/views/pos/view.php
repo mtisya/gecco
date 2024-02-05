@@ -97,7 +97,7 @@
                 // if ($Settings->invoice_view == 1 || $Settings->indian_gst) {
                 //     ?>
                      <div class="col-sm-12 text-center">
-                        <h4 style="font-weight:bold;"><?=lang('tax_invoice'); ?></h4>
+                        <h4 style="font-weight:bold;"><?=lang('Sales Receipt'); ?></h4>
                      </div>
                     <?php
                 // }
@@ -267,7 +267,7 @@
                     echo '<table class="table table-striped table-condensed"><tbody>';
                     foreach ($payments as $payment) {
                         echo '<tr>';
-                        if (($payment->paid_by == 'cash' || $payment->paid_by == 'deposit') && $payment->pos_paid) {
+                        if (($payment->paid_by == 'cash' || $payment->paid_by == 'mpesa' || $payment->paid_by == 'deposit') && $payment->pos_paid) {
                             echo '<td>' . lang('paid_by') . ': ' . lang($payment->paid_by) . '</td>';
                             echo '<td colspan="2">' . lang('amount') . ': ' . $this->sma->formatMoney($payment->pos_paid == 0 ? $payment->amount : $payment->pos_paid) . ($payment->return_id ? ' (' . lang('returned') . ')' : '') . '</td>';
                             echo '<td>' . lang('change') . ': ' . ($payment->pos_balance > 0 ? $this->sma->formatMoney($payment->pos_balance) : 0) . '</td>';

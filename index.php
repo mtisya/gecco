@@ -14,6 +14,9 @@
     }
     define('TIMEZONE', $timezone);
 
+    require_once 'C:/xampp/htdocs/gecco/vendor/autoload.php';
+    
+
 /*
  * --------------------------------------------------------------------
  * ENABLE/DISABLE DEMO

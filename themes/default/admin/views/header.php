@@ -638,7 +638,7 @@
                                 </ul>
                             </li>
                             <li class="mm_hr">
-                                <a class="submenu" href="http://localhost/cloneERP/admin/">
+                                <a class="submenu" href="http://localhost/WetlabHr/admin/">
                                     <i class="fa fa-info-circle"></i><span class="text"> <?= lang('HR and Payroll'); ?></span>
                                 </a>
                             </li>
@@ -754,11 +754,6 @@
                                             <a href="<?= admin_url('system_settings/email_templates') ?>">
                                                 <i class="fa fa-envelope"></i><span class="text"> <?= lang('email_templates'); ?></span>
                                             </a>
-                                        </li>
-                                        <li id="system_settings_sms_settings">
-                                        <a href="<?= admin_url('system_settings/sms_settings') ?>">
-                                            <i class="fa fa-cogs"></i><span class="text"> <?= lang('sms_settings'); ?></span>
-                                        </a>
                                         </li>
                                         <li id="system_settings_send_sms">
                                             <a href="<?= admin_url('system_settings/send_sms') ?>">
@@ -877,6 +872,11 @@
                                     <li id="reports_tax">
                                         <a href="<?= admin_url('reports/tax') ?>">
                                             <i class="fa fa-area-chart"></i><span class="text"> <?= lang('tax_report'); ?></span>
+                                        </a>
+                                    </li>
+                                    <li id="reports_profit_loss">
+                                        <a href="<?= admin_url('reports/profit1_loss') ?>">
+                                            <i class="fa fa-money"></i><span class="text"> <?= lang('profit_and_loss'); ?></span>
                                         </a>
                                     </li>
                                     <li id="reports_profit_loss">

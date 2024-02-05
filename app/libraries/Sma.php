@@ -340,7 +340,7 @@ class Sma
         }
         $opts .= '
         <option value="cash"' . ($paid_by && 'cash' == $paid_by ? ' selected="selected"' : '') . '>' . lang('cash') . '</option>
-        <option value="mpesa"' . ($paid_by && 'mpesa' == $paid_by ? ' selected="selected"' : '') . '>M-pesa </option>
+        <option value="mpesa"' . ($paid_by && 'mpesa' == $paid_by ? ' selected="selected"' : '') .  '>' . lang('M-pesa') . '</option>
         <option value="gift_card"' . ($paid_by && 'gift_card' == $paid_by ? ' selected="selected"' : '') . '>' . lang('gift_card') . '</option>
         <option value="CC"' . ($paid_by && 'CC' == $paid_by ? ' selected="selected"' : '') . '>' . lang('CC') . '</option>
         <option value="Cheque"' . ($paid_by && 'Cheque' == $paid_by ? ' selected="selected"' : '') . '>' . lang('cheque') . '</option>

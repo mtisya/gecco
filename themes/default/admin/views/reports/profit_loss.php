@@ -36,6 +36,16 @@
                         <i class="icon fa fa-file-picture-o"></i>
                     </a>
                 </li>
+                <li class="dropdown">
+                    <a href="http://localhost/gecco/admin/reports/profit1_loss" id="" class="tip" title="<?= lang('download_xls') ?>">
+                        <i class="icon fa fa-file-excel-o"></i>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" id="pdf" class="tip" title="<?= lang('download_pdf') ?>">
+                        <i class="icon fa fa-file-excel-o"></i>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -244,6 +254,11 @@
         $('#pdf').click(function (event) {
             event.preventDefault();
             window.location.href = "<?=admin_url('reports/profit_loss_pdf')?>/" + encodeURIComponent('<?=$start?>') + "/" + encodeURIComponent('<?=$end?>');
+            return false;
+        });
+        $('#xls').click(function (event) {
+            event.preventDefault();
+            window.location.href = "http://localhost/gecco/admin/reports/profit1_loss";
             return false;
         });
         $('#image').click(function (event) {

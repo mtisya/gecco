@@ -46,7 +46,9 @@ class atsms extends CI_Controller {
 
         // Recipient phone number and SMS content
         $recipient = $this->input->post('sendTo'); // Recipient phone number
-        $message = $this->input->post('message'); // SMS content
+        //$message = $this->input->post('message'); // SMS content
+        $message = $this->input->post('message', true);
+        $sanitized_message = $this->security->xss_clean(strip_tags($message));
 
         // Initialize Africa's Talking SDK
         $AT = new AfricasTalking($username, $apiKey);
@@ -55,7 +57,7 @@ class atsms extends CI_Controller {
         // Send SMS
         $result = $sms->send([
             'to' => $recipient,
-            'message' => $message
+            'message' => $sanitized_message
         ]);
 
         // Handle response (you can customize this)

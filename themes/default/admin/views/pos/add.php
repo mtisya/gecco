@@ -18,6 +18,7 @@
     <link href="<?= base_url('assets/custom/pos.css') ?>" rel="stylesheet"/>
     <script type="text/javascript" src="<?=$assets?>js/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="<?=$assets?>js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <!--[if lt IE 9]>
     <script src="<?=$assets?>js/jquery.js"></script>
     <![endif]-->
@@ -556,7 +557,7 @@
                             }
                         }
                         ?>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <?=form_textarea('sale_note', '', 'id="sale_note" class="form-control kb-text skip" style="height: 100px;" placeholder="' . lang('sale_note') . '" maxlength="250"');?>
@@ -565,7 +566,7 @@
                                     <?=form_textarea('staffnote', '', 'id="staffnote" class="form-control kb-text skip" style="height: 100px;" placeholder="' . lang('staff_note') . '" maxlength="250"');?>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="clearfir"></div>
                         <div id="payments">
                             <div class="well well-sm well_1">
@@ -671,8 +672,7 @@
                                                     <input name="mpesa_no[]"  type="number" id="mpesano_1"
                                                            class="form-control"/>
                                                 </div>
-                                                <button type="button" id="mbtn_1" class="btn btn-success col-md-12 mpesabtn"><i
-                                class="fa fa-paper-plane"></i>  MPESA</button>
+                                                <button type="button" id="mbtn_1" class="btn btn-success col-md-12 mpesabtn"><i class="fa fa-paper-plane"></i>  MPESA</button>
                                             </div>
                                             <div class="form-group">
                                                 <?=lang('payment_note', 'payment_note');?>
